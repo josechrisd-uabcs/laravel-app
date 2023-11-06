@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WaveController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,16 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/saludo', function () {
-    return view('welcome');
-});
-
-Route::get('/user/{first_name}/{last_name?}', function ($first_name, $last_name = "") {
-    return view('user', [
-        "givenName" => $first_name,
-        "familyName" => $last_name
-    ]);
-})->whereAlpha('first_name')->whereAlpha('last_name');
+Route::get('/saludo/{first_name}/{last_name?}', WaveController::class)->whereAlpha('first_name')->whereAlpha('last_name');
 
 Route::get('/suma/{a}/{b}', function (float $a, float $b) {
     return ($a + $b);
